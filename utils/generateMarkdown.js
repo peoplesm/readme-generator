@@ -24,7 +24,7 @@ function generateMarkdown(response) {
   ${response.usage}
 
   ## Liscense
-  ${response.liscense}
+  ${response.liscense.join(", ")}
 
   ## Contributing
   ${response.contributing}
