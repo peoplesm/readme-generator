@@ -14,6 +14,8 @@ function renderLicenseSection(license) {}
 
 function generateMarkdown(response) {
   return `# ${response.title}
+  [![License: ${response.license[0]}](https://img.shields.io/badge/License-${response.license[1]}.svg)](https://opensource.org/licenses/${response.license[2]})
+
   ## Decription
   ${response.description}
 
@@ -24,7 +26,7 @@ function generateMarkdown(response) {
   ${response.usage}
 
   ## Liscense
-  ${response.liscense.join(", ")}
+  ${response.license[0]}
 
   ## Contributing
   ${response.contributing}
