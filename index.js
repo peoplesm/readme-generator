@@ -3,8 +3,34 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const markdown = require("./utils/generateMarkdown.js");
 
-inquirer
-  .prompt([
+const questions = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "github",
+      message: "What is your Github username?",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your Github username");
+          return false;
+        }
+      },
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is your email address?",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your email address");
+          return false;
+        }
+      },
+    },
     {
       type: "input",
       name: "title",
@@ -15,11 +41,11 @@ inquirer
     //   name: "description",
     //   message: "Type a description of your project.",
     // },
-    // {
-    //   type: "editor",
-    //   name: "tableOfContents",
-    //   message: "Save a Table of Contents for your project.",
-    // },
+    {
+      type: "editor",
+      name: "installation",
+      message: "Explain the steps to install your project",
+    },
     // {
     //   type: "editor",
     //   name: "usage",
@@ -94,20 +120,25 @@ inquirer
     // },
     // {
     //   type: "editor",
-    //   name: "tests",
+    //   name: "test",
     //   message: "Save instructions for testing your project.",
     // },
-  ])
+  ]);
+};
+
+const writeFile = (response) => {
+  fs.writeFile(`${response[1]}-README.md`, response[0], (err) =>
+    err ? console.log(err) : console.log(`Successfully created your README`)
+  );
+};
+
+questions()
   .then((response) => {
-    console.log(response);
-    const readmePageContent = markdown(response);
-    fs.writeFile(`${response.title}-README.md`, readmePageContent, (err) =>
-      err ? console.log(err) : console.log("Success!")
-    );
+    return markdown(response);
+  })
+  .then((response) => {
+    return writeFile(response);
+  })
+  .catch((err) => {
+    console.log(err);
   });
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
