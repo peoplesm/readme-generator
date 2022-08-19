@@ -16,8 +16,7 @@ function renderLicenseSection(license) {
   }
 }
 
-// TODO: Create a function to generate markdown for README
-
+// Function to generate markdown for README
 function generateMarkdown(response) {
   let license = renderLicenseBadge(response.license);
   let licenseSection = renderLicenseSection(response.license);
@@ -59,4 +58,5 @@ function generateMarkdown(response) {
   ];
 }
 
+//Export the module so index.js can require it
 module.exports = generateMarkdown;

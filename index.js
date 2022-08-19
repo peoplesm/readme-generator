@@ -1,16 +1,17 @@
-// TODO: Include packages needed for this application
+//Packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
 const markdown = require("./utils/generateMarkdown.js");
 
+//Questions for the inquirer prompts in a fxn to be called
 const questions = () => {
   return inquirer.prompt([
     {
       type: "input",
       name: "github",
       message: "What is your Github username?",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please enter your Github username");
@@ -22,8 +23,8 @@ const questions = () => {
       type: "input",
       name: "email",
       message: "What is your email address?",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please enter your email address.");
@@ -35,8 +36,8 @@ const questions = () => {
       type: "input",
       name: "title",
       message: "What is the title of your project?",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please enter the title of your project.");
@@ -48,8 +49,8 @@ const questions = () => {
       type: "editor",
       name: "description",
       message: "Type a description of your project.",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please write a description of your project.");
@@ -61,8 +62,8 @@ const questions = () => {
       type: "editor",
       name: "installation",
       message: "Explain the steps to install your project.",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please decribe the installation process.");
@@ -74,8 +75,8 @@ const questions = () => {
       type: "editor",
       name: "usage",
       message: "Save a description of how to use your project.",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please enter a description of how to use your project.");
@@ -143,8 +144,8 @@ const questions = () => {
         },
         { name: "None", value: "none" },
       ],
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please choose a license.");
@@ -157,8 +158,8 @@ const questions = () => {
       name: "contributing",
       message:
         "Save a description of the guidelines for contributing to your project.",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log(
@@ -172,8 +173,8 @@ const questions = () => {
       type: "editor",
       name: "test",
       message: "Save instructions for testing your project.",
-      validate: (nameInput) => {
-        if (nameInput) {
+      validate: (input) => {
+        if (input) {
           return true;
         } else {
           console.log("Please write instructions for testing this project.");
@@ -184,19 +185,24 @@ const questions = () => {
   ]);
 };
 
+//Write the readme file
 const writeFile = (response) => {
   fs.writeFile(`${response[1]}-README.md`, response[0], (err) =>
     err ? console.log(err) : console.log(`Successfully created your README`)
   );
 };
 
+//Initialize the App
 questions()
+  //Sends prompt answers to generateMarkdown.js
   .then((response) => {
     return markdown(response);
   })
+  //Takes string from generateMarkdown.js and calls the writeFile fxn
   .then((response) => {
     return writeFile(response);
   })
+  //Catch any errors
   .catch((err) => {
     console.log(err);
   });
