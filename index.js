@@ -26,7 +26,7 @@ const questions = () => {
         if (nameInput) {
           return true;
         } else {
-          console.log("Please enter your email address");
+          console.log("Please enter your email address.");
           return false;
         }
       },
@@ -35,22 +35,54 @@ const questions = () => {
       type: "input",
       name: "title",
       message: "What is the title of your project?",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter the title of your project.");
+          return false;
+        }
+      },
     },
-    // {
-    //   type: "editor",
-    //   name: "description",
-    //   message: "Type a description of your project.",
-    // },
+    {
+      type: "editor",
+      name: "description",
+      message: "Type a description of your project.",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please write a description of your project.");
+          return false;
+        }
+      },
+    },
     {
       type: "editor",
       name: "installation",
-      message: "Explain the steps to install your project",
+      message: "Explain the steps to install your project.",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please decribe the installation process.");
+          return false;
+        }
+      },
     },
-    // {
-    //   type: "editor",
-    //   name: "usage",
-    //   message: "Save a description of the usage of your project.",
-    // },
+    {
+      type: "editor",
+      name: "usage",
+      message: "Save a description of how to use your project.",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter a description of how to use your project.");
+          return false;
+        }
+      },
+    },
     {
       type: "list",
       name: "license",
@@ -109,20 +141,46 @@ const questions = () => {
           name: "Mozilla Public 2.0",
           value: ["Mozilla Public 2.0", "MPL_2.0-brightgreen", "MPL-2.0"],
         },
-        "None",
+        { name: "None", value: "none" },
       ],
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please choose a license.");
+          return false;
+        }
+      },
     },
-    // {
-    //   type: "editor",
-    //   name: "contributing",
-    //   message:
-    //     "Save a description of the guidelines for contributing to your project.",
-    // },
-    // {
-    //   type: "editor",
-    //   name: "test",
-    //   message: "Save instructions for testing your project.",
-    // },
+    {
+      type: "editor",
+      name: "contributing",
+      message:
+        "Save a description of the guidelines for contributing to your project.",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log(
+            "Please describe the guidelines to contribute to this project."
+          );
+          return false;
+        }
+      },
+    },
+    {
+      type: "editor",
+      name: "test",
+      message: "Save instructions for testing your project.",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please write instructions for testing this project.");
+          return false;
+        }
+      },
+    },
   ]);
 };
 

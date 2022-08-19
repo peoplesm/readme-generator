@@ -1,21 +1,30 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+// function that returns an array if none is selected on the license question
+function renderLicenseBadge(license) {
+  if (license === "none") {
+    return ["no", "None-red", ""];
+  } else {
+    return license;
+  }
+}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
+//function that returns the license section of README
+function renderLicenseSection(license) {
+  if (license === "none") {
+    return "No License";
+  } else {
+    return `This project is licensed under the [${license[0]} license](https://opensource.org/licenses/${license[2]})`;
+  }
+}
 
 // TODO: Create a function to generate markdown for README
 
 function generateMarkdown(response) {
+  let license = renderLicenseBadge(response.license);
+  let licenseSection = renderLicenseSection(response.license);
+  console.log(license);
   return [
     `# ${response.title}
-  [![License: ${response.license[0]}](https://img.shields.io/badge/License-${response.license[1]}.svg)](https://opensource.org/licenses/${response.license[2]})
+  [![License: ${license[0]}](https://img.shields.io/badge/License-${license[1]}.svg)](https://opensource.org/licenses/${license[2]})
 
   ## Decription
   ${response.description}
@@ -29,13 +38,14 @@ function generateMarkdown(response) {
   * [Questions](#questions)
 
   ## Installation
+  ${response.installation}
 
   ## Usage
   ${response.usage}
 
   ## License
-  This project is licensed under the [${response.license[0]} license](https://opensource.org/licenses/${response.license[2]})
-
+  ${licenseSection}
+  
   ## Contributing
   ${response.contributing}
 
