@@ -15,7 +15,7 @@ This assignment was to code a command line application that is a README generato
 
 ## Video of App
 
-<video src="assests\videos\readme-gen-demo.mp4" controls="controls" width="1200" height="auto"></video>
+[Video of App Demonstration](https://drive.google.com/file/d/1YJKumfQTQZcgtb2uxRqKNHm7yX_WnQev/view)
 
 ## Sample Readme Created in Video
 
