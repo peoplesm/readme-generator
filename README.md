@@ -15,8 +15,8 @@ This assignment was to code a command line application that is a README generato
 
 ## Video of App
 
-[Video of App Demonstration](https://drive.google.com/file/d/1YJKumfQTQZcgtb2uxRqKNHm7yX_WnQev/view)
+<a href = "https://drive.google.com/file/d/1YJKumfQTQZcgtb2uxRqKNHm7yX_WnQev/view" target="_blank">Video of App Demonstration</a>
 
 ## Sample Readme Created in Video
 
-[Sample Readme](Sample-README.md)
+<a href = "Sample-README.md" target="_blank">Sample Readme</a>
